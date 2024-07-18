@@ -90,7 +90,14 @@ public class GameBoard {
         if (positionValues[0] == 'O' && positionValues [4] == 'O' && positionValues[8] == 'O') return 2;
         if (positionValues[2] == 'O' && positionValues [4] == 'O' && positionValues[6] == 'O') return 2;
         return 0;
-    }    
+    }
+
+    public boolean isDraw() {
+        for (int i = 0; i <= 8; i++) {
+            if (positionValues[i] == ' ') return false;            
+        }
+        return true;
+    }
 
     public boolean isPositionValid(int position) {
         if (position < 0 || position > 8) return false;
