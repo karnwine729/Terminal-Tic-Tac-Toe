@@ -7,43 +7,21 @@ public class GameBoard {
 
     public void displayBoard() {
         System.out.println();
-        displayTopRow(positionValues);
+        displayRow(6);        
         System.out.println("-".repeat(11));
-        displayMiddleRow(positionValues);
+        displayRow(3);
         System.out.println("-".repeat(11));
-        displayBottomRow(positionValues);
+        displayRow(0);
         System.out.println();
     }
 
-    private void displayTopRow(char[] positionValues) {
+    private void displayRow(int rowStart) {
         for (int i = 1; i <= 11; i++) {
             if (isBlank(i))             System.out.print(" ");
             if ((i == 4) || (i == 8))   System.out.print("|");
-            if (i == 2)                 System.out.print(positionValues[6]);
-            if (i == 6)                 System.out.print(positionValues[7]);
-            if (i == 10)                System.out.print(positionValues[8]);
-            if (i == 11)                System.out.println();
-        }
-    }
-
-    private void displayMiddleRow(char[] positionValues) {
-        for (int i = 1; i <= 11; i++) {
-            if (isBlank(i))             System.out.print(" ");
-            if ((i == 4) || (i == 8))   System.out.print("|");
-            if (i == 2)                 System.out.print(positionValues[3]);
-            if (i == 6)                 System.out.print(positionValues[4]);
-            if (i == 10)                System.out.print(positionValues[5]);
-            if (i == 11)                System.out.println();
-        }
-    }
-
-    private void displayBottomRow(char[] positionValues) {
-        for (int i = 1; i <= 11; i++) {
-            if (isBlank(i))             System.out.print(" ");
-            if ((i == 4) || (i == 8))   System.out.print("|");
-            if (i == 2)                 System.out.print(positionValues[0]);
-            if (i == 6)                 System.out.print(positionValues[1]);
-            if (i == 10)                System.out.print(positionValues[2]);
+            if (i == 2)                 System.out.print(positionValues[rowStart]);
+            if (i == 6)                 System.out.print(positionValues[rowStart + 1]);
+            if (i == 10)                System.out.print(positionValues[rowStart + 2]);
             if (i == 11)                System.out.println();
         }
     }

@@ -6,11 +6,12 @@ public class Game {
     private Scanner sc;
     private boolean gameover;    
     private int winner;
-    private boolean playAgain = true;;
+    private boolean playAgain;
 
     public Game() {
         this.player = 1;
         this.winner = 0;
+        this.playAgain = true;
         this.board = new GameBoard();
         this.sc = new Scanner(System.in);        
     }
@@ -29,9 +30,10 @@ public class Game {
         gameover = false;
         winner = 0;
         System.out.println("\n" + "-".repeat(50));
-        System.out.println("Welcome to Terminal-Tic-Tac-Toe!");
-        System.out.println("Player 1 plays 'X' and Player 2 plays 'O'.");
-        System.out.println("-".repeat(50));          
+        System.out.println("Welcome to Terminal-Tic-Tac-Toe!");        
+        System.out.println("\nPlayer 1 plays 'X' and Player 2 plays 'O'.");
+        System.out.println("-".repeat(50));
+        
     }
 
     private void loop() {            
