@@ -19,9 +19,10 @@ public class GameLoop {
         runGame();      
     }
 
-    public void runGame() {
+    private void runGame() {
         System.out.println("Select a Position on the Numpad.");        
         board.displayBoard();
+        System.out.print("Player " + this.player + "'s Turn: ");
         getPlayerMove();
         board.displayBoard();
         getPlayerMove();
@@ -30,13 +31,14 @@ public class GameLoop {
         board.displayBoard();
     }
 
-    public void getPlayerMove() {        
-        System.out.print("Player " + player + "'s turn: ");
-        board.updatePositionValues(player, sc.nextInt());
-        changePlayer();
-    }
+    private void getPlayerMove() {        
+        int position = sc.nextInt() - 1;
+        if (!board.isPositionValid(position)) {
+            System.out.println("Invalid Position. Please Choose Another Position: ");
+        }        
+    }    
 
-    public void changePlayer() {
+    private void changePlayer() {
         player = (player == 1) ? 2 : 1;
     }
 }

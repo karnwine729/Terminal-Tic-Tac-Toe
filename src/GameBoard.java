@@ -18,7 +18,7 @@ public class GameBoard {
         System.out.println();
     }
 
-    public void displayTopRow(char[] positionValues) {
+    private void displayTopRow(char[] positionValues) {
         for (int i = 1; i <= 11; i++) {
             if (isBlank(i))             System.out.print(" ");
             if ((i == 4) || (i == 8))   System.out.print("|");
@@ -29,7 +29,7 @@ public class GameBoard {
         }
     }
 
-    public void displayMiddleRow(char[] positionValues) {
+    private void displayMiddleRow(char[] positionValues) {
         for (int i = 1; i <= 11; i++) {
             if (isBlank(i))             System.out.print(" ");
             if ((i == 4) || (i == 8))   System.out.print("|");
@@ -40,7 +40,7 @@ public class GameBoard {
         }
     }
 
-    public void displayBottomRow(char[] positionValues) {
+    private void displayBottomRow(char[] positionValues) {
         for (int i = 1; i <= 11; i++) {
             if (isBlank(i))             System.out.print(" ");
             if ((i == 4) || (i == 8))   System.out.print("|");
@@ -51,21 +51,18 @@ public class GameBoard {
         }
     }
 
-    public boolean isBlank(int n) {
+    private boolean isBlank(int n) {
         return (n == 1) || (n == 3) || (n == 5) || (n == 7) || (n == 9) || (n == 11);
     }
 
-    public void updatePositionValues(int player, int position) {
-        position -= 1;
-        if (position < 0 || position > 8) {
-            System.out.println("Invalid position. Please choose a numpad position.");
-            return;
-        }        
-        if (positionValues[position] == ' ') {
-            positionValues[position] = (player == 1) ? 'X' : 'O';
-            return;
-        }
-        System.out.println("Position already occupied. Please choose another position.");
-        return;
+    public boolean isPositionValid(int position) {
+        if (position < 0 || position > 8) return false;
+        return (positionValues[position] == ' ');
+    }
+
+    public boolean updatePositionValues(int player, int position) {
+        if (!isPositionValid(position)) return false;
+        positionValues[position] = (player == 1) ? 'X' : 'O';
+        return true;
     }
 }
