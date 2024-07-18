@@ -4,11 +4,13 @@ public class GameLoop {
     private int player;
     private GameBoard board;
     private Scanner sc;
+    private boolean gameover;
 
     public GameLoop() {
         this.player = 1;
         this.board = new GameBoard();
         this.sc = new Scanner(System.in);
+        this.gameover = false;
     }
 
     public void startGame() {
@@ -21,21 +23,26 @@ public class GameLoop {
 
     private void runGame() {
         System.out.println("Select a Position on the Numpad.");        
-        board.displayBoard();
-        System.out.print("Player " + this.player + "'s Turn: ");
-        getPlayerMove();
-        board.displayBoard();
-        getPlayerMove();
-        board.displayBoard();
-        getPlayerMove();
-        board.displayBoard();
+        board.displayBoard();        
+        while(!gameover) {
+            System.out.print("Player " + this.player + "'s Turn: ");
+            getPlayerMove();
+            board.displayBoard();
+        }        
     }
 
-    private void getPlayerMove() {        
-        int position = sc.nextInt() - 1;
-        if (!board.isPositionValid(position)) {
-            System.out.println("Invalid Position. Please Choose Another Position: ");
-        }        
+    private void getPlayerMove() {
+        boolean validMove = false;
+        while (!validMove) {
+            int position = sc.nextInt() - 1;
+            if (!board.isPositionValid(position)) {
+                System.out.print("Invalid Position. Please Choose Another Position: ");
+                continue;
+            }
+            board.updatePositionValues(this.player, position);
+            validMove = true;            
+        }
+        changePlayer();
     }    
 
     private void changePlayer() {

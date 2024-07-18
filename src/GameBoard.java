@@ -60,9 +60,7 @@ public class GameBoard {
         return (positionValues[position] == ' ');
     }
 
-    public boolean updatePositionValues(int player, int position) {
-        if (!isPositionValid(position)) return false;
-        positionValues[position] = (player == 1) ? 'X' : 'O';
-        return true;
+    public void updatePositionValues(int player, int position) {        
+        positionValues[position] = (player == 1) ? 'X' : 'O';        
     }
 }
