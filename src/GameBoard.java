@@ -54,4 +54,18 @@ public class GameBoard {
     public boolean isBlank(int n) {
         return (n == 1) || (n == 3) || (n == 5) || (n == 7) || (n == 9) || (n == 11);
     }
+
+    public void updatePositionValues(int player, int position) {
+        position -= 1;
+        if (position < 0 || position > 8) {
+            System.out.println("Invalid position. Please choose a numpad position.");
+            return;
+        }        
+        if (positionValues[position] == ' ') {
+            positionValues[position] = (player == 1) ? 'X' : 'O';
+            return;
+        }
+        System.out.println("Position already occupied. Please choose another position.");
+        return;
+    }
 }
